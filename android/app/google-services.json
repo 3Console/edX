@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "251440267510",
+    "firebase_url": "https://edx---online-course.firebaseio.com",
+    "project_id": "edx---online-course",
+    "storage_bucket": "edx---online-course.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251440267510:android:573cdab0acb8ed47e1ecd7",
+        "android_client_info": {
+          "package_name": "com.a3console.flutterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251440267510-60mvhntqmlqd7213k015u0ldt6tsbr6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-i8gw8AfTVdSSxyBEhcJ5n3EnhSxadPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251440267510-60mvhntqmlqd7213k015u0ldt6tsbr6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
