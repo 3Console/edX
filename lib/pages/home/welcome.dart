@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/authenticate/authenticate.dart';
 import 'package:flutterapp/pages/shared/constants.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -23,7 +24,14 @@ class WelcomePage extends StatelessWidget {
         SizedBox(
           width: 250,
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Authenticate(showSignIn: true),
+                )
+              );
+            },
             elevation: 10,
             color: Colors.blue,
             child: Text('Log in'),
@@ -33,7 +41,14 @@ class WelcomePage extends StatelessWidget {
         SizedBox(
           width: 120,
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Authenticate(showSignIn: false),
+                )
+              );
+            },
             elevation: 10,
             color: Colors.white,
             child: Text('Register'),
