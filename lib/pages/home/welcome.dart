@@ -8,15 +8,22 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
+        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 50),
+            const Image(
+              image: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/EdX.svg/1200px-EdX.svg.png'),
+              height: 50,
+              width: 80,
+            ),
+            SizedBox(height: 20),
             Text("Courses from the world's best universities in your pocket.",
-              style: TextStyle(fontSize: 22, color: Colors.blue),),
+              style: TextStyle(fontFamily: 'Open Sans', fontSize: 22, color: Colors.blue),),
             SizedBox(height: 20),
             TextFormField(
+              style: TextStyle(color: Colors.blue),
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.search,
@@ -24,11 +31,8 @@ class WelcomePage extends StatelessWidget {
                 hintText: 'Search Courses',
                 hintStyle: TextStyle(color: Colors.blue),
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue, width: 32.0),
-                    borderRadius: BorderRadius.circular(15.0)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 32.0),
-                    borderRadius: BorderRadius.circular(15.0)),
+                    borderSide: BorderSide(width: 16.0, color: Colors.lightBlue.shade50),
+                    borderRadius: BorderRadius.circular(5.0)),
               ),
             )
           ],
@@ -48,8 +52,12 @@ class WelcomePage extends StatelessWidget {
             },
             elevation: 10,
             color: Colors.blue,
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(5.0),
+//              side: BorderSide(color: Colors.lightBlue.shade50),
+            ),
             child: Text('Create your Account',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+                style: TextStyle(fontSize: 16)
             ),
           ),
         ),
@@ -67,8 +75,12 @@ class WelcomePage extends StatelessWidget {
             },
             elevation: 10,
             color: Colors.white,
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(5.0),
+                side: BorderSide(width: 1.5, color: Colors.blue),
+            ),
             child: Text('Log in',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+                style: TextStyle(color: Colors.blue, fontSize: 16)
             ),
           ),
         ),
