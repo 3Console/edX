@@ -18,8 +18,11 @@ class WelcomePage extends StatelessWidget {
             SizedBox(height: 20),
             TextFormField(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.blue),
                 hintText: 'Search Courses',
+                hintStyle: TextStyle(color: Colors.blue),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 32.0),
                     borderRadius: BorderRadius.circular(15.0)),
@@ -45,7 +48,9 @@ class WelcomePage extends StatelessWidget {
             },
             elevation: 10,
             color: Colors.blue,
-            child: Text('Create your Account'),
+            child: Text('Create your Account',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+            ),
           ),
         ),
         SizedBox(width: 5),
@@ -62,7 +67,9 @@ class WelcomePage extends StatelessWidget {
             },
             elevation: 10,
             color: Colors.white,
-            child: Text('Log in'),
+            child: Text('Log in',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+            ),
           ),
         ),
       ],
