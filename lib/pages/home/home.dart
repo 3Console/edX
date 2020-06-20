@@ -53,10 +53,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: globalKey,
-      appBar: buildAppBar(context),
-      drawer: DrawerWidget(),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        key: globalKey,
+        appBar: buildAppBar(context),
+        drawer: DrawerWidget(),
+        body: TabBarView(
+          children: <Widget>[
+            Center(
+              child: Text('No Course'),
+            ),
+            Center(
+              child: Text('No Program'),
+            ),
+            Center(
+              child: Text('No Discovery'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -66,6 +82,30 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       iconTheme: IconThemeData(color: Colors.blue),
       elevation: 1.0,
+      bottom: TabBar(
+        labelColor: Colors.blue,
+        unselectedLabelColor: Colors.grey,
+        tabs: <Widget>[
+          Tab(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text('Course'),
+            ),
+          ),
+          Tab(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text('Program'),
+            ),
+          ),
+          Tab(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text('Discovery'),
+            ),
+          ),
+        ],
+      ),
       actions: <Widget>[
         IconButton(
           icon: searchIcon,
