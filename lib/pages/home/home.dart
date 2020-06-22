@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/course/course.dart';
+import 'package:flutterapp/pages/discovery/discovery.dart';
+import 'package:flutterapp/pages/program/program.dart';
 import 'package:flutterapp/services/auth.dart';
 import 'package:flutterapp/pages/shared/drawer.dart';
 
@@ -61,15 +64,9 @@ class _HomePageState extends State<HomePage> {
         drawer: DrawerWidget(),
         body: TabBarView(
           children: <Widget>[
-            Center(
-              child: Text('No Course'),
-            ),
-            Center(
-              child: Text('No Program'),
-            ),
-            Center(
-              child: Text('No Discovery'),
-            ),
+            CoursePage(),
+            ProgramPage(),
+            DiscoveryPage(),
           ],
         ),
       ),
