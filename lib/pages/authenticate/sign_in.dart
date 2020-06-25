@@ -27,7 +27,14 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
       appBar: AppBar(
-        title: Text('This is sign in page'),
+        iconTheme: IconThemeData(
+          color: Colors.blue,
+        ),
+        backgroundColor: Colors.white,
+        title: Text(
+          "Sign In",
+          style: TextStyle(fontFamily: 'Open Sans', fontSize: 22, color: Colors.blue),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
@@ -35,6 +42,11 @@ class _SignInState extends State<SignIn> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              const Image(
+                image: NetworkImage('https://www.edx.org/sites/default/files/upload/edx-3001.png'),
+                height: 200,
+                width: 300,
+              ),
               SizedBox(height: 20.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(labelText: 'Email'),
@@ -53,31 +65,35 @@ class _SignInState extends State<SignIn> {
                 },
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
-                color: Colors.blue[400],
-                child: Text(
-                  'Sign in',
-                  style: TextStyle(
-                    color: Colors.white
+              ButtonTheme(
+                minWidth: 300.0,
+                height: 50.0,
+                child: RaisedButton(
+                  color: Colors.blue,
+                  child: Text(
+                    'Sign in',
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
                   ),
-                ),
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    setState(() {
-                      loading = true;
-                    });
-                    dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                    if (result == null) {
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
                       setState(() {
-                        error = 'Could not sign in with those credentials';
-                        loading = false;
+                        loading = true;
                       });
+                      dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+                      if (result == null) {
+                        setState(() {
+                          error = 'Could not sign in with those credentials';
+                          loading = false;
+                        });
+                      }
+                      else {
+                        Navigator.pop(context);
+                      }
                     }
-                    else {
-                      Navigator.pop(context);
-                    }
-                  }
-                },
+                  },
+                ),
               ),
               SizedBox(height: 12.0),
               Text(
