@@ -44,34 +44,48 @@ class _SignInState extends State<SignIn> {
             children: <Widget>[
               const Image(
                 image: NetworkImage('https://www.edx.org/sites/default/files/upload/edx-3001.png'),
-                height: 200,
-                width: 300,
+                height: 100,
+                width: 200,
               ),
               SizedBox(height: 20.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(labelText: 'Email'),
-                validator: (val) => val.isEmpty ? 'Enter a email' : null,
+                decoration: InputDecoration(
+                  labelText: 'Username or e-mail address',
+                  contentPadding: const EdgeInsets.fromLTRB(0,10,0,0),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 5.0, color: Colors.lightBlue.shade50),
+                  ),
+                ),
+                validator: (val) => val.isEmpty ? 'Please enter your username or e-mail address and try again' : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
               ),
-              SizedBox(height: 20.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 5.0, color: Colors.lightBlue.shade50),
+                  ),
+                ),
                 obscureText: true,
-                validator: (val) => val.length < 8 ? 'Enter a 8+ characters password' : null,
+                validator: (val) => val.length < 8 ? 'Please enter your password and try again' : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
               ),
               SizedBox(height: 20.0),
               ButtonTheme(
-                minWidth: 300.0,
+                minWidth: 400.0,
                 height: 50.0,
                 child: RaisedButton(
                   color: Colors.blue,
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(5.0),
+      //              side: BorderSide(color: Colors.lightBlue.shade50),
+                  ),
                   child: Text(
-                    'Sign in',
+                    'Sign In',
                     style: TextStyle(
                       color: Colors.white
                     ),
