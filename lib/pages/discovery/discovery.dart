@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutterapp/pages/discovery/discovery_item.dart';
 
 class DiscoveryPage extends StatefulWidget {
   @override
@@ -7,64 +7,73 @@ class DiscoveryPage extends StatefulWidget {
 }
 
 class _DiscoveryPageState extends State<DiscoveryPage> {
+
+  int selectedIndex = 0;
+  List categories = ['Course', 'Program', 'Degree'];
+
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
-        child: StreamBuilder(
-          stream: Firestore.instance.collection('Courses').snapshots(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) return Text("");
-            return ListView.builder(
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: InkWell(
-                    onTap: () {
-                      print(snapshot.data.documents[index]['name']);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Image.network(
-                          snapshot.data.documents[index]['url'],
-                          fit: BoxFit.fill,
-                          height: 150,
-                        ),
-                        ListTile(
-                          leading: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage('https://i.imgur.com/BoN9kdC.png'),
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            snapshot.data.documents[index]['name'],
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          subtitle: Text(
-                            snapshot.data.documents[index]['publisher'],
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                      ],
+    return Column(
+      children: <Widget>[
+        Expanded(
+          flex: 4,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                    _pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  });
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(
+                    top: 10,
+                    left: 35,
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: index == selectedIndex
+                      ? Colors.blue
+                      : Colors.transparent,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    categories[index],
+                    style: TextStyle(
+                      color: index == selectedIndex
+                        ? Colors.white
+                        : Colors.grey,
                     ),
                   ),
-                );
-              },
-            );
-          },
+                ),
+              );
+            },
+          ),
         ),
-      ),
+        Expanded(
+          flex: 40,
+          child: PageView(
+            controller: _pageController,
+            children: [
+              DiscoveryItem(type: 'course'),
+              DiscoveryItem(type: 'program'),
+              DiscoveryItem(type: 'degree')
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
