@@ -3,17 +3,15 @@ import 'package:flutterapp/services/course.dart';
 import 'package:flutterapp/pages/discovery/discovery_detail.dart';
 
 class DiscoveryItem extends StatefulWidget {
-
   final String type;
 
-  DiscoveryItem({ this.type });
+  DiscoveryItem({this.type});
 
   @override
   _DiscoveryItemState createState() => _DiscoveryItemState();
 }
 
 class _DiscoveryItemState extends State<DiscoveryItem> {
-
   final CourseService _course = CourseService();
 
   @override
@@ -32,20 +30,20 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DiscoveryDetail(),
-                          settings: RouteSettings(
-                            arguments: {
-                              'course_id': snapshot.data.documents[index].documentID,
-                              'name': snapshot.data.documents[index]['name'],
-                              'url': snapshot.data.documents[index]['url'],
-                              'publisher': snapshot.data.documents[index]['publisher'],
-                              'description': snapshot.data.documents[index]['description']
-                            }
-                          )
-                        )
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DiscoveryDetail(),
+                              settings: RouteSettings(arguments: {
+                                'course_id':
+                                    snapshot.data.documents[index].documentID,
+                                'name': snapshot.data.documents[index]['name'],
+                                'url': snapshot.data.documents[index]['url'],
+                                'publisher': snapshot.data.documents[index]
+                                    ['publisher'],
+                                'type': snapshot.data.documents[index]['type'],
+                                'description': snapshot.data.documents[index]
+                                    ['description']
+                              })));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -63,7 +61,8 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: NetworkImage('https://i.imgur.com/BoN9kdC.png'),
+                                image: NetworkImage(
+                                    'https://i.imgur.com/BoN9kdC.png'),
                               ),
                             ),
                           ),

@@ -7,9 +7,8 @@ class DiscoveryDetail extends StatefulWidget {
 }
 
 class _DiscoveryDetailState extends State<DiscoveryDetail> {
-
   final CourseService _course = CourseService();
-  Map data ={};
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +39,13 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                   children: <Widget>[
                     Text(
                       data['name'],
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold
-                      ),
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 5),
                     Text(
                       data['publisher'],
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey
-                      ),
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                     SizedBox(height: 10),
                     SizedBox(
@@ -60,17 +54,15 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                         builder: (context) => RaisedButton(
                           onPressed: () async {
                             String uid = await _course.getUserID();
-                            if(uid != null) {
-                              _course.enrollCourse(uid, data['course_id']);
+                            if (uid != null) {
+                              _course.enrollCourse(uid, data);
                               _displayToastMessage(context);
                             }
                           },
                           color: Colors.green,
                           child: Text(
                             'Enroll',
-                            style: TextStyle(
-                              color: Colors.white
-                            ),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
@@ -82,10 +74,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
             SizedBox(height: 25),
             Text(
               'Description',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Text(
