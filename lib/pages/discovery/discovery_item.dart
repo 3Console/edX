@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutterapp/services/course.dart';
+import 'package:flutterapp/pages/discovery/discovery_detail.dart';
 
 class DiscoveryItem extends StatefulWidget {
 
@@ -12,13 +13,16 @@ class DiscoveryItem extends StatefulWidget {
 }
 
 class _DiscoveryItemState extends State<DiscoveryItem> {
+
+  final CourseService _course = CourseService();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
         child: StreamBuilder(
-          stream: Firestore.instance.collection('Courses').where('type', isEqualTo: widget.type).snapshots(),
+          stream: _course.getCourseByType(widget.type),
           builder: (context, snapshot) {
             if (!snapshot.hasData) return Text("");
             return ListView.builder(
@@ -27,7 +31,21 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
                 return Card(
                   child: InkWell(
                     onTap: () {
-                      print(snapshot.data.documents[index]['name']);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DiscoveryDetail(),
+                          settings: RouteSettings(
+                            arguments: {
+                              'course_id': snapshot.data.documents[index].documentID,
+                              'name': snapshot.data.documents[index]['name'],
+                              'url': snapshot.data.documents[index]['url'],
+                              'publisher': snapshot.data.documents[index]['publisher'],
+                              'description': snapshot.data.documents[index]['description']
+                            }
+                          )
+                        )
+                      );
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
