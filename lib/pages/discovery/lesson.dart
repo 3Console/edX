@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/discovery/video.dart';
 import 'package:flutterapp/services/course.dart';
 
 class LessonPage extends StatefulWidget {
@@ -32,6 +33,18 @@ class _LessonPageState extends State<LessonPage> {
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VideoPlayerScreen(
+                              url: snapshot.data.documents[index]['video_url']),
+                          settings: RouteSettings(arguments: {
+                            'title': snapshot.data.documents[index]['title'],
+                          }),
+                        ),
+                      );
+                    },
                     title: Text(
                       snapshot.data.documents[index]['title'],
                       style: TextStyle(
