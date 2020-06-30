@@ -27,7 +27,14 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
       appBar: AppBar(
-        title: Text('This is sign up page'),
+        iconTheme: IconThemeData(
+          color: Colors.blue,
+        ),
+        backgroundColor: Colors.white,
+        title: Text(
+          "Register",
+          style: TextStyle(fontFamily: 'Open Sans', fontSize: 22, color: Colors.blue),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
@@ -36,16 +43,31 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 20.0),
+              const Image(
+                image: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/EdX.svg/1200px-EdX.svg.png'),
+                  height: 50,
+                  width: 100,
+              ),
               TextFormField(
-                decoration: textInputDecoration.copyWith(labelText: 'Email'),
-                validator: (val) => val.isEmpty ? 'Enter a email' : null,
+                decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(width: 5.0, color: Colors.lightBlue.shade50),
+                    ),
+                  ),
+                validator: (val) => val.isEmpty ? 'Please enter your Email' : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
               ),
               SizedBox(height: 20.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 5.0, color: Colors.lightBlue.shade50),
+                  ),
+                ),
                 obscureText: true,
                 validator: (val) => val.length < 8 ? 'Enter a 8+ characters password' : null,
                 onChanged: (val) {
@@ -53,31 +75,39 @@ class _SignUpState extends State<SignUp> {
                 },
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
-                color: Colors.blue[400],
-                child: Text(
-                  'Register',
-                  style: TextStyle(
-                    color: Colors.white
+              ButtonTheme(
+                minWidth: 400.0,
+                height: 50.0,
+                child: RaisedButton(
+                  color: Colors.blue,
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(5.0),
+      //              side: BorderSide(color: Colors.lightBlue.shade50),
                   ),
-                ),
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    setState(() {
-                      loading = true;
-                    });
-                    dynamic result = await _auth.registerWithEmailAndPassword(email, password);
-                    if (result == null) {
+                  child: Text(
+                    'Create my account',
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
                       setState(() {
-                        error = 'Please enter a valid email';
-                        loading = false;
+                        loading = true;
                       });
+                      dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                      if (result == null) {
+                        setState(() {
+                          error = 'Please enter a valid email';
+                          loading = false;
+                        });
+                      }
+                      else {
+                        Navigator.pop(context);
+                      }
                     }
-                    else {
-                      Navigator.pop(context);
-                    }
-                  }
-                },
+                  },
+                ),
               ),
               SizedBox(height: 12.0),
               Text(

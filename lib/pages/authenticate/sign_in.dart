@@ -27,7 +27,14 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
       appBar: AppBar(
-        title: Text('This is sign in page'),
+        iconTheme: IconThemeData(
+          color: Colors.blue,
+        ),
+        backgroundColor: Colors.white,
+        title: Text(
+          "Sign In",
+          style: TextStyle(fontFamily: 'Open Sans', fontSize: 22, color: Colors.blue),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
@@ -35,49 +42,72 @@ class _SignInState extends State<SignIn> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              const Image(
+                image: NetworkImage('https://www.edx.org/sites/default/files/upload/edx-3001.png'),
+                height: 100,
+                width: 200,
+              ),
               SizedBox(height: 20.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(labelText: 'Email'),
-                validator: (val) => val.isEmpty ? 'Enter a email' : null,
+                decoration: InputDecoration(
+                  labelText: 'Username or e-mail address',
+                  contentPadding: const EdgeInsets.fromLTRB(0,10,0,0),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 5.0, color: Colors.lightBlue.shade50),
+                  ),
+                ),
+                validator: (val) => val.isEmpty ? 'Please enter your username or e-mail address and try again' : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
               ),
-              SizedBox(height: 20.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 5.0, color: Colors.lightBlue.shade50),
+                  ),
+                ),
                 obscureText: true,
-                validator: (val) => val.length < 8 ? 'Enter a 8+ characters password' : null,
+                validator: (val) => val.length < 8 ? 'Please enter your password and try again' : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
-                color: Colors.blue[400],
-                child: Text(
-                  'Sign in',
-                  style: TextStyle(
-                    color: Colors.white
+              ButtonTheme(
+                minWidth: 400.0,
+                height: 50.0,
+                child: RaisedButton(
+                  color: Colors.blue,
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(5.0),
+      //              side: BorderSide(color: Colors.lightBlue.shade50),
                   ),
-                ),
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    setState(() {
-                      loading = true;
-                    });
-                    dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                    if (result == null) {
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
                       setState(() {
-                        error = 'Could not sign in with those credentials';
-                        loading = false;
+                        loading = true;
                       });
+                      dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+                      if (result == null) {
+                        setState(() {
+                          error = 'Could not sign in with those credentials';
+                          loading = false;
+                        });
+                      }
+                      else {
+                        Navigator.pop(context);
+                      }
                     }
-                    else {
-                      Navigator.pop(context);
-                    }
-                  }
-                },
+                  },
+                ),
               ),
               SizedBox(height: 12.0),
               Text(
