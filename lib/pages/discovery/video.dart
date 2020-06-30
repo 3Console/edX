@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final String url;
@@ -11,21 +12,27 @@ class VideoPlayerScreen extends StatefulWidget {
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  VideoPlayerController _controller;
-  Future<void> _initializeVideoPlayerFuture;
+  VideoPlayerController _videoPlayerController;
+  ChewieController _chewieController;
   Map data = {};
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(widget.url);
-    _initializeVideoPlayerFuture = _controller.initialize();
+    _videoPlayerController = VideoPlayerController.network(widget.url);
+    _chewieController = ChewieController(
+        videoPlayerController: _videoPlayerController,
+        aspectRatio: 16 / 9,
+        autoPlay: false,
+        looping: true,
+        autoInitialize: true);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
   }
 
   @override
@@ -38,37 +45,19 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.blue),
       ),
-      body: Stack(
-        alignment: Alignment.center,
+      body: Column(
         children: <Widget>[
-          FutureBuilder(
-            future: _initializeVideoPlayerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                );
-              }
-              return Center(child: CircularProgressIndicator());
-            },
-          ),
-          IconButton(
-            alignment: Alignment.center,
-            onPressed: () {
-              setState(() {
-                if (_controller.value.isPlaying) {
-                  _controller.pause();
-                } else {
-                  _controller.play();
-                }
-              });
-            },
-            icon: Icon(
-              _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+          Container(
+            child: Chewie(
+              controller: _chewieController,
             ),
-            color: Colors.white,
-            iconSize: 50,
+            decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(
+                width: 1,
+                color: Colors.grey.withOpacity(0.25),
+              )),
+            ),
           ),
         ],
       ),

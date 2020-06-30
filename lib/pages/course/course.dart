@@ -72,8 +72,8 @@ class _CoursePageState extends State<CoursePage> {
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: NetworkImage(
-                                            'https://i.imgur.com/BoN9kdC.png'),
+                                        image: AssetImage(
+                                            'images/flutter-icon.png'),
                                       ),
                                     ),
                                   ),
