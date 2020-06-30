@@ -7,9 +7,8 @@ class DiscoveryPage extends StatefulWidget {
 }
 
 class _DiscoveryPageState extends State<DiscoveryPage> {
-
   int selectedIndex = 0;
-  List categories = ['Course', 'Program', 'Degree'];
+  List categories = ['Courses', 'Programs', 'Degrees'];
 
   PageController _pageController;
 
@@ -33,7 +32,9 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                 onTap: () {
                   setState(() {
                     selectedIndex = index;
-                    _pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                    _pageController.animateToPage(index,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease);
                   });
                 },
                 child: Container(
@@ -45,16 +46,15 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     color: index == selectedIndex
-                      ? Colors.blue
-                      : Colors.transparent,
+                        ? Colors.blue
+                        : Colors.transparent,
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
                     categories[index],
                     style: TextStyle(
-                      color: index == selectedIndex
-                        ? Colors.white
-                        : Colors.grey,
+                      color:
+                          index == selectedIndex ? Colors.white : Colors.grey,
                     ),
                   ),
                 ),

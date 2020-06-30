@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/services/course.dart';
 import 'package:flutterapp/pages/discovery/discovery_detail.dart';
+import 'package:flutterapp/pages/shared/item_card.dart';
 
 class DiscoveryItem extends StatefulWidget {
   final String type;
@@ -45,41 +46,11 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
                                     ['description']
                               })));
                     },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Image.network(
-                          snapshot.data.documents[index]['url'],
-                          fit: BoxFit.fill,
-                          height: 200,
-                        ),
-                        ListTile(
-                          leading: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    'https://i.imgur.com/BoN9kdC.png'),
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            snapshot.data.documents[index]['name'],
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          subtitle: Text(
-                            snapshot.data.documents[index]['publisher'],
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: buildItemCard(
+                        context,
+                        snapshot.data.documents[index]['url'],
+                        snapshot.data.documents[index]['name'],
+                        snapshot.data.documents[index]['publisher']),
                   ),
                 );
               },

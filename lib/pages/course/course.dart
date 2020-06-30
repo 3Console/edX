@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/pages/discovery/discovery_item.dart';
 import 'package:flutterapp/pages/discovery/lesson.dart';
 import 'package:flutterapp/services/course.dart';
-import 'package:flutterapp/pages/discovery/discovery_detail.dart';
+import 'package:flutterapp/pages/shared/item_card.dart';
 
 class CoursePage extends StatefulWidget {
   @override
@@ -56,41 +55,11 @@ class _CoursePageState extends State<CoursePage> {
                                     ),
                                   ));
                             },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: <Widget>[
-                                Image.network(
-                                  snapshot2.data['url'],
-                                  fit: BoxFit.fill,
-                                  height: 200,
-                                ),
-                                ListTile(
-                                  leading: Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage(
-                                            'https://i.imgur.com/BoN9kdC.png'),
-                                      ),
-                                    ),
-                                  ),
-                                  title: Text(
-                                    snapshot2.data['name'],
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  subtitle: Text(
-                                    snapshot2.data['publisher'],
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            child: buildItemCard(
+                                context,
+                                snapshot2.data['url'],
+                                snapshot2.data['name'],
+                                snapshot2.data['publisher']),
                           ),
                         );
                       }
