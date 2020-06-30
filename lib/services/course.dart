@@ -24,21 +24,24 @@ class CourseService {
         .snapshots();
   }
 
-  Stream<QuerySnapshot> getUserCourseByType(String uid, String type) {
+  Stream<QuerySnapshot> getUserCourseByUser(String uid) {
     return _firestoreInstance
         .collection('User Course')
         .where('uid', isEqualTo: uid)
-        .where('type', isEqualTo: type)
+        .snapshots();
+  }
+
+  Stream<DocumentSnapshot> getCourseDetail(String courseID) {
+    return _firestoreInstance
+        .collection('Courses')
+        .document(courseID)
         .snapshots();
   }
 
   void enrollCourse(String uid, Map course) {
     _firestoreInstance.collection('User Course').add({
       "uid": uid,
-      "name": course['name'],
-      "url": course['url'],
-      "publisher": course['publisher'],
-      'type': course['type']
+      "course_id": course['course_id'],
     });
   }
 
@@ -46,6 +49,22 @@ class CourseService {
     return _firestoreInstance
         .collection('User Course')
         .where('uid', isEqualTo: uid)
+        .snapshots();
+  }
+
+  Future<QuerySnapshot> checkEnroll(String uid, String courseID) {
+    Stream<QuerySnapshot> result = _firestoreInstance
+        .collection('User Course')
+        .where('uid', isEqualTo: uid)
+        .where('course_id', isEqualTo: courseID)
+        .snapshots();
+    return result.first;
+  }
+
+  Stream<QuerySnapshot> getLesson(String courseID) {
+    return _firestoreInstance
+        .collection('Lessons')
+        .where('course_id', isEqualTo: courseID)
         .snapshots();
   }
 }
