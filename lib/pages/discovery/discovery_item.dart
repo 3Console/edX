@@ -14,6 +14,7 @@ class DiscoveryItem extends StatefulWidget {
 
 class _DiscoveryItemState extends State<DiscoveryItem> {
   final CourseService _course = CourseService();
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,37 +24,64 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
         child: StreamBuilder(
           stream: _course.getCourseByType(widget.type),
           builder: (context, snapshot) {
-            if (!snapshot.hasData) return Text("");
-            return ListView.builder(
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DiscoveryDetail(),
-                              settings: RouteSettings(arguments: {
-                                'course_id':
-                                    snapshot.data.documents[index].documentID,
-                                'name': snapshot.data.documents[index]['name'],
-                                'url': snapshot.data.documents[index]['url'],
-                                'publisher': snapshot.data.documents[index]
-                                    ['publisher'],
-                                'type': snapshot.data.documents[index]['type'],
-                                'description': snapshot.data.documents[index]
-                                    ['description']
-                              })));
-                    },
-                    child: buildItemCard(
-                        context,
-                        snapshot.data.documents[index]['url'],
-                        snapshot.data.documents[index]['name'],
-                        snapshot.data.documents[index]['publisher']),
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              setState(() {
+                count = snapshot.data.documents.length;
+              });
+            });
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  flex: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 6, 0, 12),
+                    child: Text(
+                      'Viewing in $count item' + '${count > 1 ? 's' : ''}',
+                      style:
+                          TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                    ),
                   ),
-                );
-              },
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DiscoveryDetail(),
+                                    settings: RouteSettings(arguments: {
+                                      'course_id': snapshot
+                                          .data.documents[index].documentID,
+                                      'name': snapshot.data.documents[index]
+                                          ['name'],
+                                      'url': snapshot.data.documents[index]
+                                          ['url'],
+                                      'publisher': snapshot
+                                          .data.documents[index]['publisher'],
+                                      'type': snapshot.data.documents[index]
+                                          ['type'],
+                                      'description': snapshot
+                                          .data.documents[index]['description']
+                                    })));
+                          },
+                          child: buildItemCard(
+                              context,
+                              snapshot.data.documents[index]['url'],
+                              snapshot.data.documents[index]['name'],
+                              snapshot.data.documents[index]['publisher']),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             );
           },
         ),

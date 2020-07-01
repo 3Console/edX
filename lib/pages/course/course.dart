@@ -52,6 +52,7 @@ class _CoursePageState extends State<CoursePage> {
                                     builder: (context) => LessonPage(
                                       courseID: snapshot1.data.documents[index]
                                           ['course_id'],
+                                      courseName: snapshot2.data['name'],
                                     ),
                                   ));
                             },
