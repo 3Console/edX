@@ -52,13 +52,13 @@ class CourseService {
         .snapshots();
   }
 
-  Future<QuerySnapshot> checkEnroll(String uid, String courseID) {
+  Stream<QuerySnapshot> checkEnroll(String uid, String courseID) {
     Stream<QuerySnapshot> result = _firestoreInstance
         .collection('User Course')
         .where('uid', isEqualTo: uid)
         .where('course_id', isEqualTo: courseID)
         .snapshots();
-    return result.first;
+    return result;
   }
 
   Stream<QuerySnapshot> getLesson(String courseID) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/course/course.dart';
 import 'package:flutterapp/pages/discovery/discovery.dart';
+import 'package:flutterapp/pages/home/search.dart';
 import 'package:flutterapp/pages/program/program.dart';
 import 'package:flutterapp/services/auth.dart';
 import 'package:flutterapp/pages/shared/drawer.dart';
@@ -28,31 +29,6 @@ class _HomePageState extends State<HomePage> {
   );
 
   final globalKey = new GlobalKey<ScaffoldState>();
-  final TextEditingController _controller = new TextEditingController();
-  bool _isSearching;
-  String _searchText = "";
-
-  _HomePageState() {
-    _controller.addListener(() {
-      if (_controller.text.isEmpty) {
-        setState(() {
-          _isSearching = false;
-          _searchText = "";
-        });
-      } else {
-        setState(() {
-          _isSearching = true;
-          _searchText = _controller.text;
-        });
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _isSearching = false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,64 +83,18 @@ class _HomePageState extends State<HomePage> {
         IconButton(
           icon: searchIcon,
           onPressed: () {
-            setState(() {
-              if (this.searchIcon.icon == Icons.search) {
-                this.searchIcon = Icon(
-                  Icons.close,
-                  color: Colors.blue,
-                );
-                this.appBarTitle = TextField(
-                  controller: _controller,
-                  style: TextStyle(
-                    color: Colors.blue
-                  ),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    prefixIcon: Icon(Icons.search, color: Colors.blue),
-                    hintText: 'Search...',
-                    hintStyle: TextStyle(color: Colors.blue),
-                    contentPadding: EdgeInsets.only(left: 0, bottom: 0, top: 15, right: 0),
-                  ),
-                );
-                _handleSearchStart();
-              }
-              else {
-                _handleSearchEnd();
-              }
-            });
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => SearchPage()));
           },
         ),
         IconButton(
-            icon: Icon(Icons.person),
-            color: Colors.blue,
-            onPressed: () async {
-              await _auth.signOut();
-            },
-          ),
+          icon: Icon(Icons.person),
+          color: Colors.blue,
+          onPressed: () async {
+            await _auth.signOut();
+          },
+        ),
       ],
     );
-  }
-
-  void _handleSearchStart() {
-    setState(() {
-      _isSearching = true;
-    });
-  }
-
-  void _handleSearchEnd() {
-    setState(() {
-      this.searchIcon = Icon(
-        Icons.search,
-        color: Colors.blue,
-      );
-      this.appBarTitle = Text(
-        "Discovery",
-        style: TextStyle(color: Colors.blue),
-      );
-      _isSearching = false;
-      _controller.clear();
-    });
   }
 }

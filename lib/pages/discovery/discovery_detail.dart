@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/discovery/lesson.dart';
 import 'package:flutterapp/services/course.dart';
@@ -16,24 +17,24 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => setup());
-  }
-
-  void setup() {
     _course.getUserID().then((String result) {
       setState(() {
         uid = result;
+        checkEnrolledUser();
       });
     });
-    _course.checkEnroll(uid, data['course_id']).then((value) {
-      int index = 0;
-      if (value.documents[index].documentID.isEmpty) {
+  }
+
+  void checkEnrolledUser() {
+    Stream<QuerySnapshot> result = _course.checkEnroll(uid, data['course_id']);
+    result.first.then((value) {
+      if (value.documents.length > 0) {
         setState(() {
-          isEnrolled = false;
+          isEnrolled = true;
         });
       } else {
         setState(() {
-          isEnrolled = true;
+          isEnrolled = false;
         });
       }
     });
@@ -62,47 +63,54 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Image.network(
-                        data['url'],
-                        fit: BoxFit.fill,
+                      Container(
                         width: 100,
                         height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(data['url']),
+                              fit: BoxFit.fill),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
                       ),
                       SizedBox(width: 30),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            data['name'],
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            data['publisher'],
-                            style: TextStyle(fontSize: 12, color: Colors.grey),
-                          ),
-                          SizedBox(height: 10),
-                          SizedBox(
-                            width: 250,
-                            child: Builder(
-                              builder: (context) => RaisedButton(
-                                onPressed: () async {
-                                  String uid = await _course.getUserID();
-                                  if (uid != null) {
-                                    _course.enrollCourse(uid, data);
-                                    _displayToastMessage(context);
-                                  }
-                                },
-                                color: Colors.green,
-                                child: Text(
-                                  'Enroll',
-                                  style: TextStyle(color: Colors.white),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              data['name'],
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              data['publisher'],
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.grey),
+                            ),
+                            SizedBox(height: 10),
+                            SizedBox(
+                              width: 250,
+                              child: Builder(
+                                builder: (context) => RaisedButton(
+                                  onPressed: () async {
+                                    String uid = await _course.getUserID();
+                                    if (uid != null) {
+                                      _course.enrollCourse(uid, data);
+                                      _displayToastMessage(context);
+                                    }
+                                  },
+                                  color: Colors.green,
+                                  child: Text(
+                                    'Enroll',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
