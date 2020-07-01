@@ -40,7 +40,7 @@ class _CoursePageState extends State<CoursePage> {
                       snapshot1.data.documents[index]['course_id']),
                   builder: (context, snapshot2) {
                     if (!snapshot2.hasData)
-                      return Text('');
+                      return Center(child: CircularProgressIndicator());
                     else {
                       if (snapshot2.data['type'] == 'course') {
                         return Card(
@@ -52,6 +52,7 @@ class _CoursePageState extends State<CoursePage> {
                                     builder: (context) => LessonPage(
                                       courseID: snapshot1.data.documents[index]
                                           ['course_id'],
+                                      courseName: snapshot2.data['name'],
                                     ),
                                   ));
                             },

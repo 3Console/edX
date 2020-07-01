@@ -43,9 +43,13 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
     return isEnrolled
-        ? LessonPage(courseID: data['course_id'])
+        ? LessonPage(courseID: data['course_id'], courseName: data['name'])
         : Scaffold(
             appBar: AppBar(
+              title: Text(
+                'Discover',
+                style: TextStyle(color: Colors.blue),
+              ),
               backgroundColor: Colors.white,
               elevation: 1,
               iconTheme: IconThemeData(color: Colors.blue),
