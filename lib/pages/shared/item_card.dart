@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget buildItemCard(
-    BuildContext context, String url, String name, String publisher, String status) {
+    BuildContext context, String url, String name, String publisher) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: <Widget>[
@@ -30,7 +30,7 @@ Widget buildItemCard(
           ),
         ),
         subtitle: Text(
-          publisher + ' - ' + status,
+          publisher,
           style: TextStyle(fontSize: 12),
         ),
       ),

@@ -145,29 +145,89 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                   SizedBox(height: 25),
                   Container(
                     decoration: BoxDecoration(border: Border.all()),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        SizedBox(height: 10),
-                        Row(
-                          children: <Widget>[
-                            SizedBox(width: 10),
-                            Text(
-                              'Length:',
-                              style: TextStyle(fontSize: 13),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(height: 10),
+                                Text(
+                                  'Length:',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  'Effort:',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  'Institution:',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  'Level:',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  'Language:',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  'Video Transcripts:',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(height: 10),
+                              ],
                             ),
-                            SizedBox(width: 70),
-                            Text(
-                              'Length:',
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              SizedBox(height: 10),
+                              Text(
+                                data['length'],
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                data['effort'],
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                data['publisher'],
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                data['level'],
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                data['language'],
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                data['subtitle'],
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: 10),
+                            ],
+                          ),
                         ),
                         SizedBox(height: 5),
-                        Text(
-                          'Effort:',
-                          style: TextStyle(fontSize: 13),
-                        ),
                       ],
                     ),
                   ),

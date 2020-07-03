@@ -63,22 +63,31 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
                                           ['name'],
                                       'url': snapshot.data.documents[index]
                                           ['url'],
-                                      'publisher': snapshot
-                                          .data.documents[index]['publisher'],
+                                      'publisher': snapshot.data.documents[index]
+                                          ['publisher'],
                                       'status': snapshot.data.documents[index]
                                           ['status'],
                                       'type': snapshot.data.documents[index]
                                           ['type'],
-                                      'description': snapshot
-                                          .data.documents[index]['description']
+                                      'description': snapshot.data.documents[index]
+                                          ['description'],
+                                      'length': snapshot.data.documents[index]
+                                          ['length'],
+                                      'effort': snapshot.data.documents[index]
+                                          ['effort'],
+                                      'level': snapshot.data.documents[index]
+                                          ['level'],
+                                      'language': snapshot.data.documents[index]
+                                          ['language'],
+                                      'subtitle': snapshot.data.documents[index]
+                                          ['subtitle']
                                     })));
                           },
                           child: buildItemCard(
                               context,
                               snapshot.data.documents[index]['url'],
                               snapshot.data.documents[index]['name'],
-                              snapshot.data.documents[index]['publisher'],
-                              snapshot.data.documents[index]['status']),
+                              snapshot.data.documents[index]['publisher']),
                         ),
                       );
                     },

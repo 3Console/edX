@@ -60,8 +60,7 @@ class _CoursePageState extends State<CoursePage> {
                                 context,
                                 snapshot2.data['url'],
                                 snapshot2.data['name'],
-                                snapshot2.data['publisher'],
-                                snapshot2.data['status']),
+                                snapshot2.data['publisher']),
                           ),
                         );
                       }
