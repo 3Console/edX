@@ -65,6 +65,8 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
                                           ['url'],
                                       'publisher': snapshot
                                           .data.documents[index]['publisher'],
+                                      'status': snapshot.data.documents[index]
+                                          ['status'],
                                       'type': snapshot.data.documents[index]
                                           ['type'],
                                       'description': snapshot
@@ -75,7 +77,8 @@ class _DiscoveryItemState extends State<DiscoveryItem> {
                               context,
                               snapshot.data.documents[index]['url'],
                               snapshot.data.documents[index]['name'],
-                              snapshot.data.documents[index]['publisher']),
+                              snapshot.data.documents[index]['publisher'],
+                              snapshot.data.documents[index]['status']),
                         ),
                       );
                     },

@@ -90,26 +90,42 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   TextStyle(fontSize: 12, color: Colors.grey),
                             ),
                             SizedBox(height: 10),
-                            SizedBox(
-                              width: 250,
-                              child: Builder(
-                                builder: (context) => RaisedButton(
-                                  onPressed: () async {
-                                    String uid = await _course.getUserID();
-                                    if (uid != null) {
-                                      _course.enrollCourse(uid, data);
-                                      _displayToastMessage(context);
-                                    }
-                                  },
-                                  color: Colors.green,
-                                  child: Text(
-                                    'Enroll',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      SizedBox(
+                        child: Builder(
+                          builder: (context) => RaisedButton(
+                            onPressed: () async {
+                              String uid = await _course.getUserID();
+                              if (uid != null) {
+                                _course.enrollCourse(uid, data);
+                                _displayToastMessage(context);
+                              }
+                            },
+                            color: Colors.green,
+                            child: Column(
+                                children: <Widget>[
+                                  SizedBox(height: 8),
+                                  Text(
+                                    'Enroll',
+                                    style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
+                                  ),
+                                  SizedBox(height: 1.5),
+                                  Text(
+                                    data['status'],
+                                    style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(height: 8),
+                                ],
+                              ),
+                          ),
                         ),
                       ),
                     ],
@@ -124,6 +140,35 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                     data['description'],
                     style: TextStyle(
                       fontSize: 12,
+                    ),
+                  ),
+                  SizedBox(height: 25),
+                  Container(
+                    decoration: BoxDecoration(border: Border.all()),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        SizedBox(height: 10),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 10),
+                            Text(
+                              'Length:',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            SizedBox(width: 70),
+                            Text(
+                              'Length:',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          'Effort:',
+                          style: TextStyle(fontSize: 13),
+                        ),
+                      ],
                     ),
                   ),
                 ],
