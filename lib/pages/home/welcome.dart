@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterapp/pages/authenticate/authenticate.dart';
+import 'package:flutterapp/pages/shared/constants.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
