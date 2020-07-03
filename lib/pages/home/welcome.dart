@@ -14,7 +14,7 @@ class WelcomePage extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 50),
             const Image(
-              image: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/EdX.svg/1200px-EdX.svg.png'),
+              image: AssetImage('assets/images/1200px-EdX.svg.png'),
               height: 50,
               width: 80,
             ),

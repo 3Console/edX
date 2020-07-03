@@ -44,11 +44,13 @@ class _SignUpState extends State<SignUp> {
             children: <Widget>[
               SizedBox(height: 20.0),
               const Image(
-                image: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/EdX.svg/1200px-EdX.svg.png'),
+                image: AssetImage('assets/images/1200px-EdX.svg.png'),
                   height: 50,
                   width: 100,
               ),
               TextFormField(
+                style: TextStyle(fontSize: 18),
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     labelText: 'Email',
                     border: UnderlineInputBorder(
@@ -62,6 +64,7 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(height: 20.0),
               TextFormField(
+                style: TextStyle(fontSize: 18),
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: UnderlineInputBorder(
