@@ -143,152 +143,154 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                     ),
                   ),
                   SizedBox(height: 25),
-                  Container(
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(border: Border.all()),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 15),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: <Widget>[
+                                      Image(
+                                          image: AssetImage('assets/images/clock.png'),
+                                          height: 15,
+                                          width: 15,
+                                        ),
+                                        SizedBox(width: 10),
+                                      Text(
+                                        'Length:',
+                                        style: TextStyle(fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: <Widget>[
+                                      Image(
+                                          image: AssetImage('assets/images/brain.png'),
+                                          height: 15,
+                                          width: 15,
+                                        ),
+                                        SizedBox(width: 10),
+                                      Text(
+                                        'Effort:',
+                                        style: TextStyle(fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: <Widget>[
+                                      Image(
+                                          image: AssetImage('assets/images/museum.png'),
+                                          height: 15,
+                                          width: 15,
+                                        ),
+                                        SizedBox(width: 10),
+                                      Text(
+                                        'Institution:',
+                                        style: TextStyle(fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: <Widget>[
+                                      Image(
+                                          image: AssetImage('assets/images/equalizer.png'),
+                                          height: 15,
+                                          width: 15,
+                                        ),
+                                        SizedBox(width: 10),
+                                      Text(
+                                        'Level:',
+                                        style: TextStyle(fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: <Widget>[
+                                      Image(
+                                          image: AssetImage('assets/images/comment.png'),
+                                          height: 15,
+                                          width: 15,
+                                        ),
+                                        SizedBox(width: 10),
+                                      Text(
+                                        'Language:',
+                                        style: TextStyle(fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: <Widget>[
+                                      Image(
+                                          image: AssetImage('assets/images/video.png'),
+                                          height: 15,
+                                          width: 15,
+                                        ),
+                                        SizedBox(width: 10),
+                                      Text(
+                                        'Video Transcripts:',
+                                        style: TextStyle(fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  // SizedBox(height: 10),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 SizedBox(height: 10),
-                                Row(
-                                  children: <Widget>[
-                                    Image(
-                                        image: AssetImage('assets/images/clock.png'),
-                                        height: 15,
-                                        width: 15,
-                                      ),
-                                      SizedBox(width: 10),
-                                    Text(
-                                      'Length:',
-                                      style: TextStyle(fontSize: 13),
-                                    ),
-                                  ],
+                                Text(
+                                  data['length'],
+                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
-                                Row(
-                                  children: <Widget>[
-                                    Image(
-                                        image: AssetImage('assets/images/brain.png'),
-                                        height: 15,
-                                        width: 15,
-                                      ),
-                                      SizedBox(width: 10),
-                                    Text(
-                                      'Effort:',
-                                      style: TextStyle(fontSize: 13),
-                                    ),
-                                  ],
+                                Text(
+                                  data['effort'],
+                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
-                                Row(
-                                  children: <Widget>[
-                                    Image(
-                                        image: AssetImage('assets/images/museum.png'),
-                                        height: 15,
-                                        width: 15,
-                                      ),
-                                      SizedBox(width: 10),
-                                    Text(
-                                      'Institution:',
-                                      style: TextStyle(fontSize: 13),
-                                    ),
-                                  ],
+                                Text(
+                                  data['publisher'],
+                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
-                                Row(
-                                  children: <Widget>[
-                                    Image(
-                                        image: AssetImage('assets/images/equalizer.png'),
-                                        height: 15,
-                                        width: 15,
-                                      ),
-                                      SizedBox(width: 10),
-                                    Text(
-                                      'Level:',
-                                      style: TextStyle(fontSize: 13),
-                                    ),
-                                  ],
+                                Text(
+                                  data['level'],
+                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
-                                Row(
-                                  children: <Widget>[
-                                    Image(
-                                        image: AssetImage('assets/images/comment.png'),
-                                        height: 15,
-                                        width: 15,
-                                      ),
-                                      SizedBox(width: 10),
-                                    Text(
-                                      'Language:',
-                                      style: TextStyle(fontSize: 13),
-                                    ),
-                                  ],
+                                Text(
+                                  data['language'],
+                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
-                                Row(
-                                  children: <Widget>[
-                                    Image(
-                                        image: AssetImage('assets/images/video.png'),
-                                        height: 15,
-                                        width: 15,
-                                      ),
-                                      SizedBox(width: 10),
-                                    Text(
-                                      'Video Transcripts:',
-                                      style: TextStyle(fontSize: 13),
-                                    ),
-                                  ],
+                                Text(
+                                  data['subtitle'],
+                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
-                                SizedBox(height: 10),
+                                // SizedBox(height: 10),
                               ],
                             ),
                           ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              SizedBox(height: 10),
-                              Text(
-                                data['length'],
-                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                data['effort'],
-                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                data['publisher'],
-                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                data['level'],
-                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                data['language'],
-                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                data['subtitle'],
-                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(height: 10),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 5),
-                      ],
+                          SizedBox(height: 5),
+                        ],
+                      ),
                     ),
                   ),
                 ],
