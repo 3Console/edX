@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/shared/loading.dart';
 import 'package:flutterapp/services/auth.dart';
-import 'package:flutterapp/pages/shared/constants.dart';
 
 class SignUp extends StatefulWidget {
 
