@@ -120,7 +120,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   SizedBox(height: 1.5),
                                   Text(
                                     data['status'],
-                                    style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w400),
+                                    style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w400, decoration: TextDecoration.underline),
                                   ),
                                   SizedBox(height: 8),
                                 ],
@@ -139,7 +139,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                   Text(
                     data['description'],
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 13,
                     ),
                   ),
                   SizedBox(height: 25),
