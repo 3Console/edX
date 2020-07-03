@@ -155,34 +155,94 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 SizedBox(height: 10),
-                                Text(
-                                  'Length:',
-                                  style: TextStyle(fontSize: 13),
+                                Row(
+                                  children: <Widget>[
+                                    Image(
+                                        image: AssetImage('assets/images/clock.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
+                                    Text(
+                                      'Length:',
+                                      style: TextStyle(fontSize: 13),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 10),
-                                Text(
-                                  'Effort:',
-                                  style: TextStyle(fontSize: 13),
+                                Row(
+                                  children: <Widget>[
+                                    Image(
+                                        image: AssetImage('assets/images/brain.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
+                                    Text(
+                                      'Effort:',
+                                      style: TextStyle(fontSize: 13),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 10),
-                                Text(
-                                  'Institution:',
-                                  style: TextStyle(fontSize: 13),
+                                Row(
+                                  children: <Widget>[
+                                    Image(
+                                        image: AssetImage('assets/images/museum.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
+                                    Text(
+                                      'Institution:',
+                                      style: TextStyle(fontSize: 13),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 10),
-                                Text(
-                                  'Level:',
-                                  style: TextStyle(fontSize: 13),
+                                Row(
+                                  children: <Widget>[
+                                    Image(
+                                        image: AssetImage('assets/images/equalizer.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
+                                    Text(
+                                      'Level:',
+                                      style: TextStyle(fontSize: 13),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 10),
-                                Text(
-                                  'Language:',
-                                  style: TextStyle(fontSize: 13),
+                                Row(
+                                  children: <Widget>[
+                                    Image(
+                                        image: AssetImage('assets/images/comment.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
+                                    Text(
+                                      'Language:',
+                                      style: TextStyle(fontSize: 13),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 10),
-                                Text(
-                                  'Video Transcripts:',
-                                  style: TextStyle(fontSize: 13),
+                                Row(
+                                  children: <Widget>[
+                                    Image(
+                                        image: AssetImage('assets/images/video.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
+                                    Text(
+                                      'Video Transcripts:',
+                                      style: TextStyle(fontSize: 13),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 10),
                               ],
