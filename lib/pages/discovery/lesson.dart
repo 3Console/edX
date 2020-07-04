@@ -14,10 +14,12 @@ class LessonPage extends StatefulWidget {
 
 class _LessonPageState extends State<LessonPage> {
   final CourseService _course = CourseService();
+  Map data = {};
   int count = 0;
 
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -43,12 +45,17 @@ class _LessonPageState extends State<LessonPage> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Image(
+                  width: MediaQuery.of(context).size.width,
+                  image: NetworkImage(data['url']),
+                  fit: BoxFit.fill,
+                ),
                 Expanded(
                   flex: 0,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(12, 6, 0, 12),
                     child: Text(
-                      'Viewing in $count lesson' + '${count > 1 ? 's' : ''}',
+                      'There ${count > 1 ? 'are' : 'is'} $count lesson' + '${count > 1 ? 's' : ''}',
                       style:
                           TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
                     ),
