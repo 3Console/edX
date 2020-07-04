@@ -67,7 +67,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               widget.description,
               style: TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.normal,
+                height: 1.5
               ),
             ),
           ),
