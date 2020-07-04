@@ -4,8 +4,9 @@ import 'package:chewie/chewie.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final String url;
+  final String description;
 
-  VideoPlayerScreen({this.url});
+  VideoPlayerScreen({this.url, this.description});
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
@@ -57,6 +58,18 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 width: 1,
                 color: Colors.grey.withOpacity(0.25),
               )),
+            ),
+          ),
+          SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:10),
+            child: Text(
+              widget.description,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                height: 1.5
+              ),
             ),
           ),
         ],
