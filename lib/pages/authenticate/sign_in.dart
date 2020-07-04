@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/shared/loading.dart';
 import 'package:flutterapp/services/auth.dart';
-import 'package:flutterapp/pages/shared/constants.dart';
 
 class SignIn extends StatefulWidget {
 
@@ -43,12 +42,14 @@ class _SignInState extends State<SignIn> {
           child: Column(
             children: <Widget>[
               const Image(
-                image: NetworkImage('https://www.edx.org/sites/default/files/upload/edx-3001.png'),
+                image: AssetImage('assets/images/edx-sign-in.png'),
                 height: 100,
                 width: 200,
               ),
               SizedBox(height: 20.0),
               TextFormField(
+                style: TextStyle(fontSize: 18),
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Username or e-mail address',
                   contentPadding: const EdgeInsets.fromLTRB(0,10,0,0),
@@ -62,6 +63,7 @@ class _SignInState extends State<SignIn> {
                 },
               ),
               TextFormField(
+                style: TextStyle(fontSize: 18),
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: UnderlineInputBorder(
