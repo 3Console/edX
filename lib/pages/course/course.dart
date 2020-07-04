@@ -53,6 +53,7 @@ class _CoursePageState extends State<CoursePage> {
                                       courseID: snapshot1.data.documents[index]
                                           ['course_id'],
                                       courseName: snapshot2.data['name'],
+                                      url: snapshot2.data['url'],
                                     ),
                                   ));
                             },
