@@ -31,12 +31,12 @@ class _SearchPageState extends State<SearchPage> {
         iconTheme: IconThemeData(color: Colors.blue),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            print(searchKey);
-          },
-          child: Text('Test'),
-        ),
+        // child: RaisedButton(
+        //   onPressed: () {
+        //     print(searchKey);
+        //   },
+        //   child: Text('Test'),
+        // ),
       ),
     );
   }
