@@ -5,8 +5,9 @@ import 'package:flutterapp/services/course.dart';
 class LessonPage extends StatefulWidget {
   final String courseID;
   final String courseName;
+  final String url;
 
-  LessonPage({this.courseID, this.courseName});
+  LessonPage({this.courseID, this.courseName, this.url});
 
   @override
   _LessonPageState createState() => _LessonPageState();
@@ -14,12 +15,10 @@ class LessonPage extends StatefulWidget {
 
 class _LessonPageState extends State<LessonPage> {
   final CourseService _course = CourseService();
-  Map data = {};
   int count = 0;
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -47,7 +46,7 @@ class _LessonPageState extends State<LessonPage> {
               children: <Widget>[
                 Image(
                   width: MediaQuery.of(context).size.width,
-                  image: NetworkImage(data['url']),
+                  image: NetworkImage(widget.url),
                   fit: BoxFit.fill,
                 ),
                 Expanded(
