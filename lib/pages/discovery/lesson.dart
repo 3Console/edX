@@ -74,7 +74,9 @@ class _LessonPageState extends State<LessonPage> {
                                   MaterialPageRoute(
                                     builder: (context) => VideoPlayerScreen(
                                         url: snapshot.data.documents[index]
-                                            ['video_url']),
+                                            ['video_url'],
+                                        description: snapshot.data.documents[index]
+                                            ['description']),
                                     settings: RouteSettings(arguments: {
                                       'title': snapshot.data.documents[index]
                                           ['title'],
