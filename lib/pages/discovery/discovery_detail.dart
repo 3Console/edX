@@ -111,20 +111,27 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                             },
                             color: Colors.green,
                             child: Column(
-                                children: <Widget>[
-                                  SizedBox(height: 8),
-                                  Text(
-                                    'Enroll',
-                                    style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
-                                  ),
-                                  SizedBox(height: 1.5),
-                                  Text(
-                                    data['status'],
-                                    style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w400, decoration: TextDecoration.underline),
-                                  ),
-                                  SizedBox(height: 8),
-                                ],
-                              ),
+                              children: <Widget>[
+                                SizedBox(height: 8),
+                                Text(
+                                  'Enroll',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                SizedBox(height: 1.5),
+                                Text(
+                                  data['status'],
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.underline),
+                                ),
+                                SizedBox(height: 8),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -143,7 +150,8 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                     ),
                   ),
                   SizedBox(height: 25),
-                  Expanded(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Container(
                       decoration: BoxDecoration(border: Border.all()),
                       child: Row(
@@ -151,7 +159,8 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                         children: <Widget>[
                           Container(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -159,11 +168,12 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   Row(
                                     children: <Widget>[
                                       Image(
-                                          image: AssetImage('assets/images/clock.png'),
-                                          height: 15,
-                                          width: 15,
-                                        ),
-                                        SizedBox(width: 10),
+                                        image: AssetImage(
+                                            'assets/images/clock.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         'Length:',
                                         style: TextStyle(fontSize: 13),
@@ -174,11 +184,12 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   Row(
                                     children: <Widget>[
                                       Image(
-                                          image: AssetImage('assets/images/brain.png'),
-                                          height: 15,
-                                          width: 15,
-                                        ),
-                                        SizedBox(width: 10),
+                                        image: AssetImage(
+                                            'assets/images/brain.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         'Effort:',
                                         style: TextStyle(fontSize: 13),
@@ -189,11 +200,12 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   Row(
                                     children: <Widget>[
                                       Image(
-                                          image: AssetImage('assets/images/museum.png'),
-                                          height: 15,
-                                          width: 15,
-                                        ),
-                                        SizedBox(width: 10),
+                                        image: AssetImage(
+                                            'assets/images/museum.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         'Institution:',
                                         style: TextStyle(fontSize: 13),
@@ -204,11 +216,12 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   Row(
                                     children: <Widget>[
                                       Image(
-                                          image: AssetImage('assets/images/equalizer.png'),
-                                          height: 15,
-                                          width: 15,
-                                        ),
-                                        SizedBox(width: 10),
+                                        image: AssetImage(
+                                            'assets/images/equalizer.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         'Level:',
                                         style: TextStyle(fontSize: 13),
@@ -219,11 +232,12 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   Row(
                                     children: <Widget>[
                                       Image(
-                                          image: AssetImage('assets/images/comment.png'),
-                                          height: 15,
-                                          width: 15,
-                                        ),
-                                        SizedBox(width: 10),
+                                        image: AssetImage(
+                                            'assets/images/comment.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         'Language:',
                                         style: TextStyle(fontSize: 13),
@@ -234,18 +248,19 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                   Row(
                                     children: <Widget>[
                                       Image(
-                                          image: AssetImage('assets/images/video.png'),
-                                          height: 15,
-                                          width: 15,
-                                        ),
-                                        SizedBox(width: 10),
+                                        image: AssetImage(
+                                            'assets/images/video.png'),
+                                        height: 15,
+                                        width: 15,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         'Video Transcripts:',
                                         style: TextStyle(fontSize: 13),
                                       ),
                                     ],
                                   ),
-                                  // SizedBox(height: 10),
+                                  SizedBox(height: 10),
                                 ],
                               ),
                             ),
@@ -257,34 +272,46 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                                 SizedBox(height: 10),
                                 Text(
                                   data['length'],
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   data['effort'],
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   data['publisher'],
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   data['level'],
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   data['language'],
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   data['subtitle'],
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600),
                                 ),
-                                // SizedBox(height: 10),
+                                SizedBox(height: 10),
                               ],
                             ),
                           ),
