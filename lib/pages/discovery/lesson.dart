@@ -58,30 +58,52 @@ class _LessonPageState extends State<LessonPage> {
                   child: ListView.builder(
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => VideoPlayerScreen(
-                                    url: snapshot.data.documents[index]
-                                        ['video_url']),
-                                settings: RouteSettings(arguments: {
-                                  'title': snapshot.data.documents[index]
-                                      ['title'],
-                                }),
+                      return Column(
+                        children: <Widget>[
+                          Card(
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => VideoPlayerScreen(
+                                        url: snapshot.data.documents[index]
+                                            ['video_url']),
+                                    settings: RouteSettings(arguments: {
+                                      'title': snapshot.data.documents[index]
+                                          ['title'],
+                                    }),
+                                  ),
+                                );
+                              },
+                              title: Row(
+                                children: <Widget>[
+                                  Image(
+                                    image: AssetImage('assets/images/film.png'),
+                                    height: 20,
+                                    width: 20,
+                                    ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    snapshot.data.documents[index]['title'],
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            );
-                          },
-                          title: Text(
-                            snapshot.data.documents[index]['title'],
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              subtitle: Text(
+                                snapshot.data.documents[index]['detail'],
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          SizedBox(height: 10),
+                        ],
                       );
                     },
                   ),
