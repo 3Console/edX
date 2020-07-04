@@ -3,7 +3,6 @@ import 'package:flutterapp/pages/discovery/lesson.dart';
 import 'package:flutterapp/services/course.dart';
 import 'package:flutterapp/pages/shared/item_card.dart';
 
-
 class ProgramPage extends StatefulWidget {
   @override
   _ProgramPageState createState() => _ProgramPageState();
@@ -43,7 +42,7 @@ class _ProgramPageState extends State<ProgramPage> {
                     if (!snapshot2.hasData)
                       return Text('');
                     else {
-                      if (snapshot2.data['type'] == 'program') {
+                      if (snapshot2.data['type'] != 'course') {
                         return Card(
                           child: InkWell(
                             onTap: () {
